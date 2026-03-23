@@ -1,13 +1,9 @@
-import { $ } from '@wdio/globals'
+import { $, expect } from '@wdio/globals'
 import Page from './page.js';
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
+
 class LoginPage extends Page {
-    /**
-     * define selectors using getter methods
-     */
+  
     get getUserName () {
         return $('#user-name');
     }
@@ -20,19 +16,42 @@ class LoginPage extends Page {
         return $('#login-button');
     }
 
-    /**
-     * a method to encapsule automation code to interact with the page
-     * e.g. to login using username and password
-     */
+    get hamburgerMenu () {
+        return $('#react-burger-menu-btn');
+    }
+
+    get logOutBtn () {
+        return $('#logout_sidebar_link');
+    }
+
+    get errorMessage () {
+        return $('[data-test="error"]')
+    }
+
+    users = ['standard_user', 'error_user', 'problem_user', 'performance_glitch_user', 'visual_user', 'locked_out_user']
+
+    async loopLogin() {
+        for (let i =0; i < this.users.length; i++) {
+           await this.login(this.users[i], 'secret_sauce');
+           if (this.users[i] === 'locked_out_user') {
+                await expect(this.errorMessage).toExist();
+           } else 
+                await this.logOut();
+                await expect(this.getUserName).toExist();
+        }
+    }
+  
     async login (username, password) {
         await this.getUserName.setValue(username);
         await this.getPassword.setValue(password);
         await this.submitButton.click();
     }
 
-    /**
-     * overwrite specific options to adapt it to page object
-     */
+    async logOut() {
+        await this.hamburgerMenu.click();
+        await this.logOutBtn.click();
+    }
+    
     open () {
         return super.open('login');
     }
