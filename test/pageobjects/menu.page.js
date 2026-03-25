@@ -62,6 +62,6 @@ class MenuPage extends Page {
 
     
         
-
+}
 
    export default new MenuPage(); 
