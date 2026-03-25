@@ -126,13 +126,13 @@ import SecurePage from '../pageobjects/secure.page.js'
 // })
 
 
-describe('Sauce demo login w/Sam', () => {
-    it('Looping', async () => {
-        await LoginPage.open()
+// describe('Sauce demo login w/Sam', () => {
+//     it('Looping', async () => {
+//         await LoginPage.open()
 
-        await LoginPage.loopLogin()
+//         await LoginPage.loopLogin()
 
     
         
-    })
-})
+//     })
+// })
