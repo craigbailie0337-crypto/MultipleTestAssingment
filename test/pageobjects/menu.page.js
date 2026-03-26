@@ -1,3 +1,4 @@
+import Page from './page.js';
 
 
 class MenuPage extends Page {
@@ -9,15 +10,11 @@ class MenuPage extends Page {
         return $('#react-burger-cross-btn');
     }
 
-    get logoutLink() {
-        return $('#logout_sidebar_link');
+    get allItemsLnk() {
+        return $('//a[@id="inventory_sidebar_link"][text()="All Items"]');
     }
 
-    get allItems() {
-        return $('//a[@id="inventory_sidebar_link"][text()="All Items")]');
-    }
-
-    get aboutLink() {
+    get aboutLnk() {
         return $('//a[@id="about_sidebar_link"][text()="About"]');
     }
 
@@ -25,39 +22,37 @@ class MenuPage extends Page {
         return $('//a[@id="logout_sidebar_link"][text()="Logout"]');
     }
 
-    get resetAppSt() {
+    get resetLnk() {
         return $('//a[@id="reset_sidebar_link"][text()="Reset App State"]');
     }
 
     async openMenu() {
         await this.burgerBtn.click();
+        await this.closeBtn.waitForDisplayed();
     }
 
     async closeMenu() {
         await this.closeBtn.click();
+        await this.burgerBtn.waitForDisplayed();
     }
 
     async logout() {
         await this.logoutLink.click();
     }
 
-    async testlinksHM() {
-        for (let i = 0; i < ['All Items', 'About', 'Logout', 'Reset App State'].length; i++) {
-            await expect($(`text=${['All Items', 'About', 'Logout', 'Reset App State'][i]}`)).toBeDisplayed();
-        }
+    // async testlinksHM() {
+    //     for (let i = 0; i < ['All Items', 'About', 'Logout', 'Reset App State'].length; i++) {
+    //         await expect($(`text=${['All Items', 'About', 'Logout', 'Reset App State'][i]}`)).toBeDisplayed();
+    //     }
+    // }
+       
+    async checkMenuLinks() {
+        await expect(this.allItemsLnk).toBeDisplayed();
+        await expect(this.aboutLnk).toBeDisplayed();
+        await expect(this.logoutLnk).toBeDisplayed();
+        await expect(this.resetLnk).toBeDisplayed();
     }
-        // const menuLinks = [
-        //     {selector: '#inventory_sidebar_link', expectedText: 'All Items'},
-        //     {selector: '#about_sidebar_link', expectedText: 'About'},
-        //     {selector: '#logout_sidebar_link', expectedText: 'Logout'},
-        //     {selector: '#reset_sidebar_link', expectedText: 'Reset App State'} 
 
-        // ];
-
-        // for (const link of menuLinks) {
-        //     const element = await $(link.selector);
-        //     await expect(element).toBeDisplayed();
-        //     await expect(element).toHaveText(link.expectedText);
         
 
     

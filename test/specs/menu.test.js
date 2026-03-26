@@ -4,13 +4,19 @@ import MenuPage from '../pageobjects/menu.page.js'
 
 
 describe('Testing Hamburger Menu', () => {
-    it('Full test of Menu', async () => {
-        await LoginPage.open()
-        await LoginPage.login('standard_user', 'secret_sauce')
-        await MenuPage.openMenu()
-        await MenuPage.testlinksHM()
-
+    it('Should open menu and verify all links exist', async () => {
+        await LoginPage.open();
+        await LoginPage.login('standard_user', 'secret_sauce');
+        await MenuPage.openMenu();
+        await MenuPage.checkMenuLinks();
     
-        
-    })
-})
+    });
+    it('Should close the menu when the X button is clicked', async () => {
+        await MenuPage.closeMenu();
+
+        await expect(MenuPage.closeBtn).not.toBeDisplayed();
+
+    });
+
+
+});
