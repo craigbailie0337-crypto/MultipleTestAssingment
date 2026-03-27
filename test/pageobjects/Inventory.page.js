@@ -16,9 +16,18 @@ class InventoryPage extends Page {
         return $('.bm-menu');
     }
 
+    get addBackpackBtn() {
+        return $('#add-to-cart-sauce-labs-backpack');
+    }
+
+    async addBackpackToCart() {
+        await this.addBackpackBtn.click();
+    }
+
     async openMenu() {
         await this.menuButton.click();
     }
+
 
 
 

@@ -35,22 +35,27 @@ class CartPage extends Page {
         await this.checkOutBtn.click();
     }
 
-    async checkCartLinks() {
-        await CartPage.openCart();
-        await expect(browser).toHaveUrlContaining('cart');
-        await expect(CartPage.removeBtn).toBeDisplayed();
-        await expect(CartPage.removeBtn).toHaveText('Remove');
-        
-        await CartPage.removeItem();
-        await expect(CartPage.removeBtn).not.toBeDisplayed();
+      async addItemCart() {
+        await $('#add-to-cart-sauce-labs-backpack').click();
+    }
 
-        await CartPage.continueShopping();
+    async checkCartLinks() {
+        await this.openCart();
+        await expect(browser).toHaveUrlContaining('cart');
+        await expect(this.removeBtn).toBeDisplayed();
+        await expect(this.removeBtn).toHaveText('Remove');
+        
+        await this.removeItem();
+        await expect(this.removeBtn).not.toBeDisplayed();
+
+        await this.continueShopping();
         await expect(browser).toHaveUrlContaining('inventory');
 
-        await CartPage.checkout();
+        await this.checkout();
         await expect(browser).toHaveUrlContaining('checkout');
     }
 
+   
     
 
 }
