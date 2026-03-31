@@ -7,7 +7,7 @@ class CartPage extends Page {
         return $('.shopping_cart_link');
     }
 
-    get removeBtn() {
+    get removeBtnBackpack() {
         return $('//button[@id="remove-sauce-labs-backpack"][text()="Remove"]');
     }
 
@@ -19,12 +19,16 @@ class CartPage extends Page {
         return $('//button[@id="checkout"][text()="Checkout"]');
     }
 
+     get cartItem() {
+        return $('[data-test="inventory-item-name"]');
+    }
+
     async openCart() {
         await this.shoppingCartIcon.click();
     }
 
-    async removeItem() {
-        await this.removeBtn.click();
+    async removeBackpack() {
+        await this.removeBtnBackpack.click();
     }
 
     async continueShopping() {

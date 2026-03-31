@@ -20,6 +20,14 @@ class InventoryPage extends Page {
         return $('#add-to-cart-sauce-labs-backpack');
     }
 
+    get cartIcon() {
+        return $('[data-test="shopping-cart-badge"]');
+    }
+
+     get cartIconOneItem() {
+        return $('//span[@data-test="shopping-cart-badge"][contains(text(), "1")]');
+    }
+
     async addBackpackToCart() {
         await this.addBackpackBtn.click();
     }
@@ -27,6 +35,8 @@ class InventoryPage extends Page {
     async openMenu() {
         await this.menuButton.click();
     }
+
+
 
 
 
