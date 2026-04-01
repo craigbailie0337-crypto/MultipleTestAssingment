@@ -20,7 +20,7 @@ class InventoryPage extends Page {
         return $('#add-to-cart-sauce-labs-backpack');
     }
 
-    get cartIcon() {
+    get cartBadge() {
         return $('[data-test="shopping-cart-badge"]');
     }
 

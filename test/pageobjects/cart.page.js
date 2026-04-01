@@ -16,7 +16,7 @@ class CartPage extends Page {
     }
 
     get checkOutBtn() {
-        return $('//button[@id="checkout"][text()="Checkout"]');
+        return $('//button[@id="checkout"]');
     }
 
      get cartItem() {

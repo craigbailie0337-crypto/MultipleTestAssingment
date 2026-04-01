@@ -20,3 +20,12 @@
 
 
 // });
+
+// describe('Negative testing login', () => {
+//     it('Should try and login with fake PW and valid username', async () => {
+//         await LoginPage.open();
+//         await LoginPage.login('standard_user', 'wrong_password');
+//         await expect(LoginPage.errorMessage).toBeDisplayed();
+//         await expect(LoginPage.errorMessage).toHaveText(expect.stringContaining('Username and password do not match'))
+//     })
+// })

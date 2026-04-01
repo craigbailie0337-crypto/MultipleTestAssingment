@@ -13,7 +13,7 @@ describe('Shopping Cart Tests on SauceDemo', () => {
             await LoginPage.login('standard_user', 'secret_sauce');
             await InventoryPage.addBackpackToCart();
             await expect(InventoryPage.cartIconOneItem).toExist();
-            await expect(InventoryPage.cartIcon).toHaveText(
+            await expect(InventoryPage.cartBadge).toHaveText(
                 expect.stringContaining('1'))
             // await expect(InventoryPage.cartIcon).toHaveText('1');
             // expect(await browser.getUrl()).toContain('inventory');
@@ -24,7 +24,7 @@ describe('Shopping Cart Tests on SauceDemo', () => {
         expect(await browser.getUrl()).toContain('cart');
         await expect(CartPage.cartItem).toHaveText(
                 expect.stringContaining('Backpack'));
-        // await expect(CartPage.removeBtn).toBeDisplayed();
+       
     });
 
     it('Should remove item from cart', async () => {
@@ -37,4 +37,16 @@ describe('Shopping Cart Tests on SauceDemo', () => {
         expect(await browser.getUrl()).toContain('inventory');
     });
 
+});
+
+describe('Cart Test/Actual behavior', () => {
+    it('Should allow checkout with an empty cart', async () => {
+        await LoginPage.open();
+        await LoginPage.login('standard_user', 'secret_sauce');
+        await CartPage.openCart();
+        await expect(CartPage.shoppingCartIcon);
+        await expect(CartPage.checkout().toBeExisting);
+        await expect(browser).toHaveUrl('https://www.saucedemo.com/checkout-step-one.html'); 
+        
+    });
 });
