@@ -1,4 +1,4 @@
-import { browser, $ } from '@wdio/globals';
+import { browser, $, expect } from '@wdio/globals';
 import LoginPage from '../pageobjects/login.page.js';
 import CartPage from '../pageobjects/cart.page.js';
 import InventoryPage from '../pageobjects/Inventory.page.js';
@@ -50,3 +50,49 @@ describe('Cart Test/Actual behavior', () => {
         
     });
 });
+
+
+describe('Shopping cart Tests', () => {
+    it('Adding random number of items to shopping cart', async () => {
+        await LoginPage.open();
+        await LoginPage.login('standard_user', 'secret_sauce');
+        await expect(InventoryPage.cartBadge).toHaveText(
+            await InventoryPage.addRandomItems()
+        );
+    });
+});
+
+describe('Shopping cart test', () => {
+    it('Should add all items to cart and verify', async () => {
+        await LoginPage.open();
+        await LoginPage.login('standard_user', 'secret_sauce');
+        await InventoryPage.addAllItemsToCart();
+        await expect(InventoryPage.cartBadge).toHaveText('6');
+        
+    });
+});
+
+describe('Shopping cart tests', () => {
+    it('Should add all items to cart verify and then remove 1 item and verify', async () => {
+        await LoginPage.open();
+        await LoginPage.login('standard_user', 'secret_sauce');
+        await InventoryPage.addAllItemsToCart();
+        await expect(InventoryPage.cartBadge).toHaveText('6');
+        await InventoryPage.removeOneItem();
+        await expect(InventoryPage.cartBadge).toHaveText('5');
+    });
+});
+
+describe('Shopping cart Tests', () => {
+    it('Should add all items to cart, remove one item, then remove all remaining', async () => {
+        await LoginPage.open();
+        await LoginPage.login('standard_user', 'secret_sauce');
+        await InventoryPage.addAllItemsToCart();
+        await expect(InventoryPage.cartBadge).toHaveText('6');
+        await InventoryPage.removeOneItem();
+        await expect(InventoryPage.cartBadge).toHaveText('5');
+        await InventoryPage.removeAllItems();
+        await expect(InventoryPage.cartBadge).not.toBeDisplayed();
+    });
+});
+
