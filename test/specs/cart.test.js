@@ -15,8 +15,6 @@ describe('Shopping Cart Tests on SauceDemo', () => {
             await expect(InventoryPage.cartIconOneItem).toExist();
             await expect(InventoryPage.cartBadge).toHaveText(
                 expect.stringContaining('1'))
-            // await expect(InventoryPage.cartIcon).toHaveText('1');
-            // expect(await browser.getUrl()).toContain('inventory');
     });
 
     it('Should open cart and verify item exists', async () => {
@@ -83,7 +81,7 @@ describe('Shopping cart tests', () => {
     });
 });
 
-describe('Shopping cart Tests', () => {
+describe('Shopping cart negative Tests', () => {
     it('Should add all items to cart, remove one item, then remove all remaining', async () => {
         await LoginPage.open();
         await LoginPage.login('standard_user', 'secret_sauce');

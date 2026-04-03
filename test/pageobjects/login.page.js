@@ -28,9 +28,7 @@ class LoginPage extends Page {
         return $('[data-test="error"]')
     }
 
-    async openCartDirectly() {
-         await browser.url('https://www.saucedemo.com/cart/html');
-    };
+   
 
     users = ['standard_user', 'error_user', 'problem_user', 'performance_glitch_user', 'visual_user', 'locked_out_user']
 

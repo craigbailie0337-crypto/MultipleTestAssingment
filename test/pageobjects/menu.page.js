@@ -40,11 +40,6 @@ class MenuPage extends Page {
         await this.logoutLink.click();
     }
 
-    // async testlinksHM() { 
-    //     for (let i = 0; i < ['All Items', 'About', 'Logout', 'Reset App State'].length; i++) {
-    //         await expect($(`text=${['All Items', 'About', 'Logout', 'Reset App State'][i]}`)).toBeDisplayed();
-    //     }
-    // }
        
     async checkMenuLinks() {
         await expect(this.allItemsLnk).toBeDisplayed();
